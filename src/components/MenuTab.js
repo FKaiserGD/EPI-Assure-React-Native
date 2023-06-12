@@ -1,24 +1,31 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Feather, Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 const MenuTab = () => {
+  const navigation = useNavigation();
+
+  const userHome = () => {
+    navigation.navigate('UserHomeScreen');// Lógica para navegar para a página de estudos
+  };
+
   const userEstudo = () => {
-    // Lógica para navegar para a página de estudos
+    navigation.navigate('UserEstudosScreen');// Lógica para navegar para a página de estudos
   };
 
   const userGame = () => {
-    // Lógica para navegar para a página de ranking
+    navigation.navigate('UserGameScreen');// Lógica para navegar para a página de ranking
   };
 
   const userConfig = () => {
-    // Lógica para navegar para a página de configurações
+    navigation.navigate('UserConfigScreen');// Lógica para navegar para a página de configurações
   };
 
   return (
     <View style={styles.footer}>
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => {}}>
+        <TouchableOpacity onPress={userHome}>
           <Feather name="home" style={styles.icon} />
           <Text style={styles.iconName}>Home</Text>
         </TouchableOpacity>

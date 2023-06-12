@@ -15,6 +15,11 @@ export default function LoginScreen() {
         navigation.navigate('AdmHomeScreen');
     };
 
+    const senha = () => {
+        // Lógica para a ação "Senha"
+        navigation.navigate('NovaSenhaScreen');
+    };
+
 
   return (
     <View style={styles.container}>
@@ -44,7 +49,7 @@ export default function LoginScreen() {
                 </TouchableOpacity>
             </View>
           </View>
-          <TouchableOpacity onPress={()=>{}}>
+          <TouchableOpacity onPress={senha}>
             <Text style={styles.forgotPassword}>Esqueceu a senha ou o código?</Text>
           </TouchableOpacity>
         </View>
@@ -67,7 +72,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     width: 70,
-    height: 70,
+    height: 80,
     alignItems: 'center',
   },
   main: {
