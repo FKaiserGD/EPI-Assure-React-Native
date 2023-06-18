@@ -1,11 +1,27 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import { View, Button, Image, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import TermoCheckbox from '../../components/TermoCheckbox';
 import EquipmentItem from '../../components/EquipamentItems';
 import Header from '../../components/Header';
 import MenuTab from '../../components/MenuTab';
+import * as ImagePicker from 'expo-image-picker';
 
 const UserHomeScreen = () => {
+  const [imageUri, setImageUri] = useState(null);
+
+  const openCamera = async () => {
+    const { status } = await ImagePicker.requestCameraPermissionsAsync();
+    if (status !== 'granted') {
+      alert('Precisamos da permissão de acesso à câmera para isso.');
+      return;
+    }
+
+    const result = await ImagePicker.launchCameraAsync();
+    if (!result.cancelled) {
+      setImageUri(result.uri);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Header />
@@ -30,6 +46,10 @@ const UserHomeScreen = () => {
           <EquipmentItem nome="Máscara" imagem={require('../../icones/mascara-medica.png')} />
           <View style={styles.hr} />
           <EquipmentItem nome="Cone" imagem={require('../../icones/cone.png')} />
+        </View>
+        <View style={styles.containerCamera}>
+          <Button title="Abrir câmera" onPress={openCamera} style={styles.cameraButton}/>
+          {imageUri && <Image source={{ uri: imageUri }} style={styles.camera} />}
         </View>
         <View style={styles.termoContainer}>
           <TermoCheckbox />
@@ -79,6 +99,21 @@ const styles = StyleSheet.create({
   termoText: {
     fontSize: 14,
     fontWeight: 'bold',
+  },
+  containerCamera: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: '5%',
+  },
+  camera: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: '5%',
+    width: 350,
+    height: 400,
+    borderRadius: 10,
   },
   container2: {
     flex: 1,

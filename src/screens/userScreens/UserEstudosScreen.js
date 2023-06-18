@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import Header from '../../components/Header';
 import MenuTab from '../../components/MenuTab';
 
@@ -8,9 +8,70 @@ const UserEstudosScreen = () => {
     <View style={styles.container}>
       <Header />
       <ScrollView contentContainerStyle={styles.scrollViewContainer}>
-        <Text>Nada ainda</Text>
+        <Text style={styles.title}>Estudos</Text>
+        <View style={styles.checkEquip}>
+          <EquipmentItem
+            nome="Capacete"
+            imagem={require('../../icones/capacete.png')}
+            descricao="Proteção para cabeça contra impactos."
+          />
+          <View style={styles.hr} />
+          <EquipmentItem
+            nome="Luvas"
+            imagem={require('../../icones/luvas.png')}
+            descricao="Proteção para mãos contra riscos diversos, como químicos e mecânicos."
+          />
+          <View style={styles.hr} />
+          <EquipmentItem
+            nome="Óculos de Proteção"
+            imagem={require('../../icones/oculos-de-seguranca.png')}
+            descricao="Proteção para os olhos contra impactos, radiações, produtos químicos."
+          />
+          <View style={styles.hr} />
+          <EquipmentItem
+            nome="Botas"
+            imagem={require('../../icones/botas.png')}
+            descricao="Proteção para pés contra impactos, quedas, cortes e umidade."
+          />
+          <View style={styles.hr} />
+          <EquipmentItem
+            nome="Colete"
+            imagem={require('../../icones/colete.png')}
+            descricao="Proteger o corpo do trabalhador contra diversos tipos de risco."
+          />
+          <View style={styles.hr} />
+          <EquipmentItem
+            nome="Cone"
+            imagem={require('../../icones/cone.png')}
+            descricao="O cone de sinalização comumente usado para segurança, delimitação de espaços em obras ou estacionamento."
+          />
+          <View style={styles.hr} />
+          <EquipmentItem
+            nome="Fita"
+            imagem={require('../../icones/fita.png')}
+            descricao="As fitas ajudam a prevenir quedas e evitar os desagradáveis escorregões."
+          />
+          <View style={styles.hr} />
+          <EquipmentItem
+            nome="Máscara"
+            imagem={require('../../icones/mascara-medica.png')}
+            descricao="Qual a finalidade do uso da máscara? As máscaras funcionam como uma barreira física para a liberação dessas gotículas no ar quando há tosse, espirros e até mesmo durante conversas."
+          />
+        </View>
       </ScrollView>
       <MenuTab />
+    </View>
+  );
+};
+
+const EquipmentItem = ({ nome, imagem, descricao }) => {
+  return (
+    <View style={styles.equipamento}>
+      <Image source={imagem} style={styles.iconeEquip} />
+      <View style={styles.info}>
+        <Text style={styles.nomeEquip}>{nome}</Text>
+        <Text style={styles.descricaoEquip}>{descricao}</Text>
+      </View>
     </View>
   );
 };
@@ -22,7 +83,7 @@ const styles = StyleSheet.create({
   scrollViewContainer: {
     flexGrow: 1,
     paddingTop: 160,
-    paddingBottom: 40,
+    paddingBottom: 100,
   },
   title: {
     textAlign: 'left',
@@ -31,50 +92,35 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   checkEquip: {
-    marginTop: '8%',
-    marginBottom: '10%',
+    marginTop: '5%',
+    marginLeft: '5%',
+  },
+  equipamento: {
+    flexDirection: 'row',
+  },
+  info: {
+    marginLeft: '5%',
+    marginTop: '1%',
+  },
+  nomeEquip: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  descricaoEquip: {
+    width: 250,
+  },
+  iconeEquip: {
+    width: 60,
+    height: 60,
+    paddingTop: '5%',
   },
   hr: {
     textAlign: 'center',
     width: 350,
     marginTop: '3%',
     marginBottom: '3%',
-  },
-  termoContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  termoText: {
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
-  container2: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: '8%',
-    marginBottom: '3%',
-  },
-  botaoConfirma: {
-    backgroundColor: '#5A98FF',
-    color: 'white',
-    width: 350,
-    height: 48,
-    padding: 10,
-    borderRadius: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: '15%',
-    textShadowColor: 'rgba(0, 0, 0, 1)',
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 2,
-    fontWeight: 'bold',
-  },
-  botaoText: {
-    backgroundColor: '#5A98FF',
-    color: 'white',
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
   },
 });
 
